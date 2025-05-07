@@ -49,6 +49,14 @@ Tabel informasi struktur data
 
 Dari tebel diatas dapat dilihat bahwa dataset memiliki 8 kolom dengan tipe number baik int maupun float.
 Selanjutnya pemeriksaan fitur numerik, berikut histogram dari masing-masing fitur pada dataset diabetes
+![Age](https://raw.githubusercontent.com/XMB234/Tugas-Machine-Learning-Terapan-Predictive-Analytic-/72a49402ca3cbf475d6b025eb6b2dff23f102d15/Age.jpg) 
+![BMI](https://raw.githubusercontent.com/XMB234/Tugas-Machine-Learning-Terapan-Predictive-Analytic-/72a49402ca3cbf475d6b025eb6b2dff23f102d15/BMI.jpg)
+![SkinThickness](https://raw.githubusercontent.com/XMB234/Tugas-Machine-Learning-Terapan-Predictive-Analytic-/72a49402ca3cbf475d6b025eb6b2dff23f102d15/SkinThickness.jpg)
+![BloodPressure](https://raw.githubusercontent.com/XMB234/Tugas-Machine-Learning-Terapan-Predictive-Analytic-/72a49402ca3cbf475d6b025eb6b2dff23f102d15/BloodPressure.jpg)
+![Insulin](https://raw.githubusercontent.com/XMB234/Tugas-Machine-Learning-Terapan-Predictive-Analytic-/72a49402ca3cbf475d6b025eb6b2dff23f102d15/Insulin.jpg)
+![Glucose](https://raw.githubusercontent.com/XMB234/Tugas-Machine-Learning-Terapan-Predictive-Analytic-/72a49402ca3cbf475d6b025eb6b2dff23f102d15/Glucose.jpg)
+![DiabetesPedigreeFunction](https://raw.githubusercontent.com/XMB234/Tugas-Machine-Learning-Terapan-Predictive-Analytic-/72a49402ca3cbf475d6b025eb6b2dff23f102d15/DiabetesPredigreeFunction.jpg)
+![Pregnancies](https://github.com/XMB234/Tugas-Machine-Learning-Terapan-Predictive-Analytic-/blob/main/Pregnancies.jpg?raw=true)
 
 Dari gambar dapat dilihat bahwa
 
@@ -56,8 +64,8 @@ Dari gambar dapat dilihat bahwa
 * Pada fitur BMI, sebagian data terpusat diantarra rentang 25 -40. Sebagian kecil data lainnya tersebat diluar rentang nilai tersebut.
 * Pada fitur SkinThickness, banyak data memiliki nilai dibawah 5, dan yang lainnya kebanyakan tersebar diantara nilai 20- 40.
 * Fitur selanjutnya yang dapat diamati adalah BloodPressure. pada fitur ini, nilai data didominasi antara 60 -90, namun dapat diamati bahwa terdapat data yang jumlahnya cukup banyak pada rentang nilai 5 kebawah.
-* Untuk fiur insulin, kebanyak data tersebar bearada pada rentang nilai kurang dari 200 Terutama pada rentang nilai yang mendekati 0.
-* Untuk fitur glucose, data tersebar diantara nilai 75-200. Namun paling banyak terpusat diantara nilai 100 -125. Terdapat sebagian kecil data yang berada di bawah nilai 75.
+* Untuk fiur Insulin, kebanyak data tersebar bearada pada rentang nilai kurang dari 200 Terutama pada rentang nilai yang mendekati 0.
+* Untuk fitur Glucose, data tersebar diantara nilai 75-200. Namun paling banyak terpusat diantara nilai 100 -125. Terdapat sebagian kecil data yang berada di bawah nilai 75.
 * Untuk fiur DiabetesPedigreeFunction, sebagain data tersebar pada nilai 0 - 1. Sebagian kecil lainnya berada diatas nilai 1.
 * Untuk fiur Pregnancies, kebanyakan data tersebar pada rentang nilai dibawah 5. Sebagian kecil data ada yang tersebahr diatas nilai 12. 
 
@@ -322,7 +330,7 @@ Pada tahap evaluasi, akan digunakan Mean Squared Error (MSE) untuk mengukur kesa
 | AdaBoost                  | 0.0993             |
 | Stacking                  | 0.0993             |
 
-Dari diagram tersebut dapat dilihat bahwa model stacking memiliki nilai MSE paling rendah pada test set. Maka stacking akan digunkan pada proyek ini dalam memprediksi penyakit diabetes berdasarkan fitur Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin, DiabetesPedigreeFunction, dan Age,. 
+Dari diagram tersebut dapat dilihat bahwa model stacking memiliki nilai MSE paling rendah pada test set. Maka stacking akan digunkan pada proyek ini dalam memprediksi penyakit diabetes berdasarkan fitur Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin, DiabetesPedigreeFunction, dan Age.
 
 ## Kesimpulan 
 Dengan menerapkan beberapa metode, dari keenam model yang telah diuji, model stacking merupakan model yang memiliki error paling rendah dan mampu memprediksi penyakit diabetes dengan tepat. Tujuan dari proyek dalam mengatasi permasalahan yang telah disebutkan telah dapat tercapai.
