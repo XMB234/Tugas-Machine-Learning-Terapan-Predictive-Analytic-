@@ -331,25 +331,25 @@ Stacking adalah teknik ensemble yang menggabungkan beberapa model machine learni
 * final_estimator__C = Menentukan kekuatan regularisasi dalam model. Diantara (0.01, 0.1, 1, 10) dengan menggunakan GridSearch didapat nilai yang terbaik untuk parameter adalah 1. 
 * final_estimator__C = Menentukan jenis regularisasi yang digunakan dalam model. Diantara ('l2', 'l1') dengan menggunakan GridSearch didapat jenis yang terbaik untuk parameter adalah l2.
 ## Evaluation
-Pada tahap evaluasi, akan digunakan Mean Squared Error (MSE) untuk mengukur kesalahan prediksi model dalam memprediksi penyakit diabetes, dibandingkan dengan data aktual. MSE adalah metrik evaluasi yang umum digunakan dalam machine learning untuk menilai seberapa baik model memprediksi nilai target. MSE dihitung dengan rata-rata kuadrat selisih antara nilai prediksi model dan nilai aktual, yang memberikan gambaran mengenai besarnya kesalahan prediksi. MSE sering digunakan untuk membandingkan performa berbagai model machine learning, seperti Random Forest, Linear Regression, Support Vector Regression, dan lainnya. Model dengan nilai MSE terendah dianggap yang paling akurat, karena nilai MSE yang lebih kecil menunjukkan prediksi model yang lebih mendekati data aktual. Rumus untuk menghitung MSE adalah sebagai berikut:
+Pada tahap evaluasi, akan digunakan F-1 Score untuk mengukur kesalahan prediksi model dalam memprediksi penyakit diabetes. F-1 score adalah metrik evaluasi yang mengukur keseimbangan antara precision dan recall untuk menilai kinerja model, terutama pada data yang tidak seimbang, dengan nilai lebih tinggi menunjukkan performa model yang lebih baik dalam mengklasifikasikan data secara akurat. F-1 Score didapatkan dariperhitungan kombinasi dari nilai precision dan nilai recall yang kemudian hasilnya disebut sebagai rata rata harmonis. Rata-rata harmonis memberikan lebih banyak bobot pada nilai yang lebih kecil. Artinya, jika Precision dan Recall sangat berbeda (misalnya, satu sangat tinggi dan satu sangat rendah), F1-Score akan lebih dipengaruhi oleh nilai yang lebih rendah, yang mendorong kita untuk memperbaiki kinerja model secara keseluruhan. Nilai F1-Score yang lebih tinggi menunjukkan kinerja model yang baik dalam menangani keseimbangan antara mendeteksi kasus positif dengan benar (Recall) dan meminimalkan kesalahan dalam prediksi positif (Precision). Rumus untuk menghitung F-1 Score adalah sebagai berikut:
 
-![MSE](https://github.com/XMB234/Tugas-Machine-Learning-Terapan-Predictive-Analytic-/blob/8488d6c670094a055612d9313a25ad0a42d8efe8/MSE.jpg)
+![F-1 Score](https://github.com/XMB234/Tugas-Machine-Learning-Terapan-Predictive-Analytic-/blob/4d03772bc9f182f17374cd471d245c9653be1758/F-1%20Score.jpg)
 
-Berikut nilai  MSE untuk masing masing model dalam memprediks penyakit diabetes
+Berikut nilai  F-1 Score untuk masing masing model dalam memprediks penyakit diabetes
 
-| Model                    | Mean Squared Error |
-|--------------------------|--------------------|
-| XGB                       | 0.1126             |
-| Random Forest             | 0.1126             |
-| Bagging Classifier        | 0.1126             |
-| LightGBM                  | 0.1126             |
-| AdaBoost                  | 0.0993             |
-| Stacking                  | 0.0993             |
+| Model               | F1-Score |
+|---------------------|----------|
+| XGB                 | 0.8350   |
+| Random Forest       | 0.8317   |
+| Bagging Classifier  | 0.8350   |
+| LightGBM            | 0.8350   |
+| AdaBoost            | 0.8462   |
+| Stacking            | 0.8515   |
 
-Dari diagram tersebut dapat dilihat bahwa model stacking memiliki nilai MSE paling rendah pada test set. Maka stacking akan digunkan pada proyek ini dalam memprediksi penyakit diabetes berdasarkan fitur Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin, DiabetesPedigreeFunction, dan Age.
+Dari diagram tersebut dapat dilihat bahwa model stacking memiliki nilai F-1 Score paling tinggi pada test set. Maka stacking akan digunkan pada proyek ini dalam memprediksi penyakit diabetes berdasarkan fitur Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin, DiabetesPedigreeFunction, dan Age.
 
 ## Kesimpulan 
-Dengan menerapkan beberapa metode, dari keenam model yang telah diuji, model stacking merupakan model yang memiliki error paling rendah dan mampu memprediksi penyakit diabetes dengan tepat. Tujuan dari proyek dalam mengatasi permasalahan yang telah disebutkan telah dapat tercapai.
+Dengan menerapkan beberapa metode, dari keenam model yang telah diuji, model stacking merupakan model yang memiliki peforma paling bagys dan mampu memprediksi penyakit diabetes dengan tepat. Tujuan dari proyek dalam mengatasi permasalahan yang telah disebutkan telah dapat tercapai.
 ## Referensi
 1. Ahmadi, T., Wulandari, A., & Suhatman, H. (2019). Sistem Customer Churn Prediction Menggunakan Machine Learning pada Perusahaan ISP. Jetri: Jurnal Ilmiah Teknik Elektro, 17.
 2. Apriliah, W., Kurniawan, I., Baydhowi, M., & Haryati, T. (2021). Prediksi Kemungkinan Diabetes pada Tahap Awal Menggunakan Algoritma Klasifikasi Random Forest. SISTEMASI, 10(1), 163. https://doi.org/10.32520/stmsi.v10i1.1129
