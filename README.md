@@ -47,26 +47,39 @@ Tabel informasi struktur data
 | 8  | Outcome                  | 768            | int64     |
 
 Dari tebel diatas dapat dilihat bahwa dataset memiliki 8 kolom dengan tipe number baik int maupun float.
-Selanjutnya pemeriksaan fitur numerik, berikut histogram dari masing-masing fitur pada dataset diabetes
+Selanjutnya pemeriksaan fitur numerik, berikut histogram dari masing-masing fitur pada dataset diabetes.
+
 ![Age](https://raw.githubusercontent.com/XMB234/Tugas-Machine-Learning-Terapan-Predictive-Analytic-/72a49402ca3cbf475d6b025eb6b2dff23f102d15/Age.jpg) 
+
+Pada fitur Age, dapat dilihat bahwa beberapa data terpusat diumur 20 tahunan. Sebagin kecil data ada juga yang tersebar ke nilai 60 keatas.
+
 ![BMI](https://raw.githubusercontent.com/XMB234/Tugas-Machine-Learning-Terapan-Predictive-Analytic-/72a49402ca3cbf475d6b025eb6b2dff23f102d15/BMI.jpg)
+
+Pada fitur BMI, sebagian data terpusat diantarra rentang 25 -40. Sebagian kecil data lainnya tersebat diluar rentang nilai tersebut.
+
 ![SkinThickness](https://raw.githubusercontent.com/XMB234/Tugas-Machine-Learning-Terapan-Predictive-Analytic-/72a49402ca3cbf475d6b025eb6b2dff23f102d15/SkinThickness.jpg)
+
+Pada fitur SkinThickness, banyak data memiliki nilai dibawah 5, dan yang lainnya kebanyakan tersebar diantara nilai 20- 40.
+
 ![BloodPressure](https://raw.githubusercontent.com/XMB234/Tugas-Machine-Learning-Terapan-Predictive-Analytic-/72a49402ca3cbf475d6b025eb6b2dff23f102d15/BloodPressure.jpg)
+
+Pada fitur BloodPressure. pada fitur ini, nilai data didominasi antara 60 -90, namun dapat diamati bahwa terdapat data yang jumlahnya cukup banyak pada rentang nilai 5 kebawah.
+
 ![Insulin](https://raw.githubusercontent.com/XMB234/Tugas-Machine-Learning-Terapan-Predictive-Analytic-/72a49402ca3cbf475d6b025eb6b2dff23f102d15/Insulin.jpg)
+
+Untuk fiur Insulin, kebanyak data tersebar bearada pada rentang nilai kurang dari 200 Terutama pada rentang nilai yang mendekati 0.
+
 ![Glucose](https://raw.githubusercontent.com/XMB234/Tugas-Machine-Learning-Terapan-Predictive-Analytic-/72a49402ca3cbf475d6b025eb6b2dff23f102d15/Glucose.jpg)
+
+Untuk fitur Glucose, data tersebar diantara nilai 75-200. Namun paling banyak terpusat diantara nilai 100 -125. Terdapat sebagian kecil data yang berada di bawah nilai 75.
+
 ![DiabetesPedigreeFunction](https://raw.githubusercontent.com/XMB234/Tugas-Machine-Learning-Terapan-Predictive-Analytic-/72a49402ca3cbf475d6b025eb6b2dff23f102d15/DiabetesPredigreeFunction.jpg)
+
+Untuk fiur DiabetesPedigreeFunction, sebagain data tersebar pada nilai 0 - 1. Sebagian kecil lainnya berada diatas nilai 1.
+
 ![Pregnancies](https://github.com/XMB234/Tugas-Machine-Learning-Terapan-Predictive-Analytic-/blob/main/Pregnancies.jpg?raw=true)
 
-Dari gambar dapat dilihat bahwa
-
-* Pada fitur Age, dapat dilihat bahwa beberapa data terpusat diumur 20 tahunan. Sebagin kecil data ada juga yang tersebar ke nilai 60 keatas.
-* Pada fitur BMI, sebagian data terpusat diantarra rentang 25 -40. Sebagian kecil data lainnya tersebat diluar rentang nilai tersebut.
-* Pada fitur SkinThickness, banyak data memiliki nilai dibawah 5, dan yang lainnya kebanyakan tersebar diantara nilai 20- 40.
-* Fitur selanjutnya yang dapat diamati adalah BloodPressure. pada fitur ini, nilai data didominasi antara 60 -90, namun dapat diamati bahwa terdapat data yang jumlahnya cukup banyak pada rentang nilai 5 kebawah.
-* Untuk fiur Insulin, kebanyak data tersebar bearada pada rentang nilai kurang dari 200 Terutama pada rentang nilai yang mendekati 0.
-* Untuk fitur Glucose, data tersebar diantara nilai 75-200. Namun paling banyak terpusat diantara nilai 100 -125. Terdapat sebagian kecil data yang berada di bawah nilai 75.
-* Untuk fiur DiabetesPedigreeFunction, sebagain data tersebar pada nilai 0 - 1. Sebagian kecil lainnya berada diatas nilai 1.
-* Untuk fiur Pregnancies, kebanyakan data tersebar pada rentang nilai dibawah 5. Sebagian kecil data ada yang tersebahr diatas nilai 12. 
+Untuk fiur Pregnancies, kebanyakan data tersebar pada rentang nilai dibawah 5. Sebagian kecil data ada yang tersebahr diatas nilai 12. 
 
 Salah satu syarat penting agar dataset dapat digunakan dalam pembuatan model machine learning adalah keseimbangannya. Salah satu cara untuk memeriksa apakah dataset kita seimbang atau tidak adalah dengan melakukan visualisasi. Berikut adalah visualisasi dari dataset susu yang akan digunakan dalam pembuatan model machine learning untuk proyek ini.
 
@@ -345,3 +358,13 @@ Dari diagram tersebut dapat dilihat bahwa model stacking memiliki nilai MSE pali
 ## Kesimpulan 
 Dengan menerapkan beberapa metode, dari keenam model yang telah diuji, model stacking merupakan model yang memiliki error paling rendah dan mampu memprediksi penyakit diabetes dengan tepat. Tujuan dari proyek dalam mengatasi permasalahan yang telah disebutkan telah dapat tercapai.
 ## Referensi
+1. Ahmadi, T., Wulandari, A., & Suhatman, H. (2019). Sistem Customer Churn Prediction Menggunakan Machine Learning pada Perusahaan ISP. Jetri: Jurnal Ilmiah Teknik Elektro, 17.
+2. Apriliah, W., Kurniawan, I., Baydhowi, M., & Haryati, T. (2021). Prediksi Kemungkinan Diabetes pada Tahap Awal Menggunakan Algoritma Klasifikasi Random Forest. SISTEMASI, 10(1), 163. https://doi.org/10.32520/stmsi.v10i1.1129
+3. Fernandes, W., Komati, K. S., & Assis de Souza Gazolli, K. (2024). Anomaly detection in oil-producing wells: a comparative study of one-class classifiers in a multivariate time series dataset. Journal of Petroleum Exploration and Production Technology, 14(1), 343–363. https://doi.org/10.1007/s13202-023-01710-6
+4. Öngelen, G., & İnkaya, T. (2023). A novel LOF-based ensemble regression tree methodology. Neural Computing and Applications, 35(26), 19453–19463. https://doi.org/10.1007/s00521-023-08773-w
+5. Septiana Rizky, P., Haiban Hirzi, R., & Hidayaturrohman, U. (2022). Perbandingan Metode LightGBM dan XGBoost dalam Menangani Data dengan Kelas Tidak Seimbang. J Statistika: Jurnal Ilmiah Teori Dan Aplikasi Statistika, 15(2), 228–236. https://doi.org/10.36456/jstat.vol15.no2.a5548
+6. Silalahi, A. P., & Simanullang, H. G. (2023). SUPERVISED LEARNING METODE K-NEAREST NEIGHBOR UNTUK PREDIKSI DIABETES PADA WANITA. METHOMIKA Jurnal Manajemen Informatika Dan Komputerisasi Akuntansi, 7(1), 144–149. https://doi.org/10.46880/jmika.Vol7No1.pp144-149
+ 
+
+ 
+
