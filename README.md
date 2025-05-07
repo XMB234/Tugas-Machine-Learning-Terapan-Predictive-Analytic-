@@ -333,14 +333,7 @@ Stacking adalah teknik ensemble yang menggabungkan beberapa model machine learni
 ## Evaluation
 Pada tahap evaluasi, akan digunakan Mean Squared Error (MSE) untuk mengukur kesalahan prediksi model dalam memprediksi penyakit diabetes, dibandingkan dengan data aktual. MSE adalah metrik evaluasi yang umum digunakan dalam machine learning untuk menilai seberapa baik model memprediksi nilai target. MSE dihitung dengan rata-rata kuadrat selisih antara nilai prediksi model dan nilai aktual, yang memberikan gambaran mengenai besarnya kesalahan prediksi. MSE sering digunakan untuk membandingkan performa berbagai model machine learning, seperti Random Forest, Linear Regression, Support Vector Regression, dan lainnya. Model dengan nilai MSE terendah dianggap yang paling akurat, karena nilai MSE yang lebih kecil menunjukkan prediksi model yang lebih mendekati data aktual. Rumus untuk menghitung MSE adalah sebagai berikut:
 
-\[
-MSE = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2
-\]
-
-Keterangan:
-- n = jumlah data (sample).
-- y_i \) = nilai observasi yang sebenarnya (actual value).
-- \( \hat{y}_i \) = nilai prediksi (predicted value).
+![MSE](https://github.com/XMB234/Tugas-Machine-Learning-Terapan-Predictive-Analytic-/blob/8488d6c670094a055612d9313a25ad0a42d8efe8/MSE.jpg)
 
 Berikut nilai  MSE untuk masing masing model dalam memprediks penyakit diabetes
 
