@@ -1,4 +1,4 @@
-# Tugas-Machine-Learning-Terapan-Predictive-Analytic-
+# Ekspolaris Berbagai Model Machine Learning dalam Memprediksi Penyakit Diabetes
 ## Latar Belakang
 
 Diabetes mellitus (DM) adalah penyakit degeneratif kronis yang terjadi akibat produksi insulin yang tidak mencukupi di pankreas atau karena tubuh tidak dapat menggunakan insulin secara efektif, yang mengakibatkan hiperglikemi (peningkatan kadar glukosa darah) sebagai indikator utama. Menurut _World Health Organization_ (WHO), diperkirakan sebanyak 300 juta orang di seluruh dunia akan terkena DM pada tahun 2025. Selain itu, DM juga tercatat sebagai salah satu penyebab kematian utama, berdasarkan data dari International Diabetes Federation yang dirilis pada 2021, dengan Indonesia menduduki peringkat keenam, mencatatkan angka kematian sebanyak 236.711 jiwa. Karena gejalanya yang mirip dengan penyakit umum lainnya, banyak orang yang tidak menyadari bahwa mereka menderita diabetes, bahkan ketika penyakit ini sudah berkembang menjadi komplikasi. Untuk memastikan apakah seseorang mengidap diabetes, diperlukan diagnosis dari dokter melalui pemeriksaan darah. Metode yang biasa digunakan untuk deteksi diabetes adalah tes laboratorium, seperti pengukuran glukosa darah dan uji toleransi glukosa oral. Namun, hasil tes ini sering kali dipengaruhi oleh kesalahan manusia atau bias dalam pengujian, terutama pada saat analisis manual atau interpretasi data dilakukan.Oleh karena itu, diperlukan suatu metode berbasis data medis yang mempertimbangkan faktor-faktor yang mempengaruhi penyakit diabetes untuk melakukan diagnosis, serta pendekatan yang dapat mengurangi kesalahan manusia dan bias dalam pengujian prediksi penyakit diabetes.
@@ -8,8 +8,7 @@ Dalam kegiatan prediksi diagnostik, data mining dan text mining telah terbukti s
 Berdasarkan latar belakang, pada proyek ini akan dibuat sebuah model machine learning yang dapat memprediksi penyakit diabetes berdasarkan factor factor penyakit diabetes.
 
 ## Bussiness Understanding
-
-Dari pernyataan tersebut, dapat ditarik kesimpulan bahwa permasalahan utama dapat dinyatakan dengan sebuah pertanyaan berikut:
+Selain menimbulkan masalah kesehatan langsung seperti gangguan pada kadar gula darah, penyakit diabetes juga dapat menyebabkan berbagai komplikasi serius yang dapat memengaruhi kualitas hidup penderitanyaDari pernyataan tersebut, dapat ditarik kesimpulan bahwa permasalahan utama dapat dinyatakan dengan sebuah pertanyaan berikut:
 
 * Bagaimana memanfaatkan machine learning untuk menghasilkan sistem prediksi penyakit diabetes yang akurat, cepat, serta minim kesalahan dan bias berdasarak faktor-faktor penyakit diabetes
 
@@ -319,7 +318,18 @@ Stacking adalah teknik ensemble yang menggabungkan beberapa model machine learni
 * final_estimator__C = Menentukan kekuatan regularisasi dalam model. Diantara (0.01, 0.1, 1, 10) dengan menggunakan GridSearch didapat nilai yang terbaik untuk parameter adalah 1. 
 * final_estimator__C = Menentukan jenis regularisasi yang digunakan dalam model. Diantara ('l2', 'l1') dengan menggunakan GridSearch didapat jenis yang terbaik untuk parameter adalah l2.
 ## Evaluation
-Pada tahap evaluasi, akan digunakan Mean Squared Error (MSE) untuk mengukur kesalahan prediksi model dalam memprediksi penyakit diabetes, dibandingkan dengan data aktual. MSE adalah metrik evaluasi yang umum digunakan dalam machine learning untuk menilai seberapa baik model memprediksi nilai target. MSE dihitung dengan rata-rata kuadrat selisih antara nilai prediksi model dan nilai aktual, yang memberikan gambaran mengenai besarnya kesalahan prediksi. MSE sering digunakan untuk membandingkan performa berbagai model machine learning, seperti Random Forest, Linear Regression, Support Vector Regression, dan lainnya. Model dengan nilai MSE terendah dianggap yang paling akurat, karena nilai MSE yang lebih kecil menunjukkan prediksi model yang lebih mendekati data aktual. Berikut nilai  MSE untuk masing masing model dalam memprediks penyakit diabetes
+Pada tahap evaluasi, akan digunakan Mean Squared Error (MSE) untuk mengukur kesalahan prediksi model dalam memprediksi penyakit diabetes, dibandingkan dengan data aktual. MSE adalah metrik evaluasi yang umum digunakan dalam machine learning untuk menilai seberapa baik model memprediksi nilai target. MSE dihitung dengan rata-rata kuadrat selisih antara nilai prediksi model dan nilai aktual, yang memberikan gambaran mengenai besarnya kesalahan prediksi. MSE sering digunakan untuk membandingkan performa berbagai model machine learning, seperti Random Forest, Linear Regression, Support Vector Regression, dan lainnya. Model dengan nilai MSE terendah dianggap yang paling akurat, karena nilai MSE yang lebih kecil menunjukkan prediksi model yang lebih mendekati data aktual. Rumus untuk menghitung MSE adalah sebagai berikut:
+
+\[
+MSE = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2
+\]
+
+Keterangan:
+- n = jumlah data (sample).
+- y_i \) = nilai observasi yang sebenarnya (actual value).
+- \( \hat{y}_i \) = nilai prediksi (predicted value).
+
+Berikut nilai  MSE untuk masing masing model dalam memprediks penyakit diabetes
 
 | Model                    | Mean Squared Error |
 |--------------------------|--------------------|
