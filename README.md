@@ -8,7 +8,7 @@ Dalam kegiatan prediksi diagnostik, data mining dan text mining telah terbukti s
 Berdasarkan latar belakang, pada proyek ini akan dibuat sebuah model machine learning yang dapat memprediksi penyakit diabetes berdasarkan factor factor penyakit diabetes.
 
 ## Bussiness Understanding
-Selain menimbulkan masalah kesehatan langsung seperti gangguan pada kadar gula darah, penyakit diabetes juga dapat menyebabkan berbagai komplikasi serius yang dapat memengaruhi kualitas hidup penderitanyaDari pernyataan tersebut, dapat ditarik kesimpulan bahwa permasalahan utama dapat dinyatakan dengan sebuah pertanyaan berikut:
+Selain menimbulkan masalah kesehatan langsung seperti gangguan pada kadar gula darah, penyakit diabetes juga dapat menyebabkan berbagai komplikasi serius yang dapat memengaruhi kualitas hidup penderitanya. Dari pernyataan tersebut, dapat ditarik kesimpulan bahwa permasalahan utama dapat dinyatakan dengan sebuah pertanyaan berikut:
 
 * Bagaimana memanfaatkan machine learning untuk menghasilkan sistem prediksi penyakit diabetes yang akurat, cepat, serta minim kesalahan dan bias berdasarak faktor-faktor penyakit diabetes
 
