@@ -1,5 +1,5 @@
 # Ekspolaris Berbagai Model Machine Learning dalam Memprediksi Penyakit Diabetes
-## Latar Belakang
+## Domain Proyek
 
 Diabetes mellitus (DM) adalah penyakit degeneratif kronis yang terjadi akibat produksi insulin yang tidak mencukupi di pankreas atau karena tubuh tidak dapat menggunakan insulin secara efektif, yang mengakibatkan hiperglikemi (peningkatan kadar glukosa darah) sebagai indikator utama. Menurut _World Health Organization_ (WHO), diperkirakan sebanyak 300 juta orang di seluruh dunia akan terkena DM pada tahun 2025. Selain itu, DM juga tercatat sebagai salah satu penyebab kematian utama, berdasarkan data dari International Diabetes Federation yang dirilis pada 2021, dengan Indonesia menduduki peringkat keenam, mencatatkan angka kematian sebanyak 236.711 jiwa. Karena gejalanya yang mirip dengan penyakit umum lainnya, banyak orang yang tidak menyadari bahwa mereka menderita diabetes, bahkan ketika penyakit ini sudah berkembang menjadi komplikasi. Untuk memastikan apakah seseorang mengidap diabetes, diperlukan diagnosis dari dokter melalui pemeriksaan darah. Metode yang biasa digunakan untuk deteksi diabetes adalah tes laboratorium, seperti pengukuran glukosa darah dan uji toleransi glukosa oral. Namun, hasil tes ini sering kali dipengaruhi oleh kesalahan manusia atau bias dalam pengujian, terutama pada saat analisis manual atau interpretasi data dilakukan.Oleh karena itu, diperlukan suatu metode berbasis data medis yang mempertimbangkan faktor-faktor yang mempengaruhi penyakit diabetes untuk melakukan diagnosis, serta pendekatan yang dapat mengurangi kesalahan manusia dan bias dalam pengujian prediksi penyakit diabetes.
 
@@ -8,18 +8,23 @@ Dalam kegiatan prediksi diagnostik, data mining dan text mining telah terbukti s
 Berdasarkan latar belakang, pada proyek ini akan dibuat sebuah model machine learning yang dapat memprediksi penyakit diabetes berdasarkan factor factor penyakit diabetes.
 
 ## Bussiness Understanding
+### Problem Statements
 Selain menimbulkan masalah kesehatan langsung seperti gangguan pada kadar gula darah, penyakit diabetes juga dapat menyebabkan berbagai komplikasi serius yang dapat memengaruhi kualitas hidup penderitanya. Dari pernyataan tersebut, dapat ditarik kesimpulan bahwa permasalahan utama dapat dinyatakan dengan sebuah pertanyaan berikut:
-
 * Bagaimana memanfaatkan machine learning untuk menghasilkan sistem prediksi penyakit diabetes yang akurat, cepat, serta minim kesalahan dan bias berdasarak faktor-faktor penyakit diabetes
 
+### Goals
 Dalam menyelesaikan permasalahan tersebut, berikut beberapa solusi yang akan dilakukan pada proyek ini:
+* Menemukan model machine learning dengan performa terbaik dalam memprediksi penyakit diabetes berdasarkan sejumlah fitur yang tersedia.
+* Membangun dan mengembangakan model machine learning untuk memprediksi penyakit diabetes berdasarkan hasil eksplorasi awal model.
 
-* Menemukan model machine learning dengan performa terbaik dalam memprediksi penyakit diabetes berdasarkan sejumlah fitur yang tersedia, menggunakan dataset PIMA Diabetes yang terdiri dari 786 data. Dalam proses ini, akan digunakan pustaka lazypredict untuk mengevaluasi dan membandingkan berbagai model guna menentukan yang paling efektif.
-* Membangun dan mengembangakan model machine learning untuk memprediksi penyakit diabetes berdasarkan hasil eksplorasi awal model. Model dengan performa terbaik yang diperoleh dari eksplorasi menggunakan lazypredict akan dipilih untuk dilakukan hyperparameter tuning. Selanjutnya, akurasi masing-masing model akan dievaluasi menggunakan metode mean squared error (MSE), dan model dengan nilai error terendah akan dipilih sebagai model utama
+### Solution statements
+Untuk mencapai tujuan tersebut, maka :
+* Dilakukan pencarian beberapa model yang memiliki peforma bagsu dengan menggunakan Pustaka lazypredict untuk mengevaluasi dan membandingkan berbagai model guna menentukan yang paling efektif
+* Membuat dan melakukan hyperparameter tuning pada beberapa model dengan performa terbaik yang diperoleh dari eksplorasi menggunakan lazypredict. Selanjutnya, akurasi masing-masing model akan dievaluasi menggunakan metode mean squared error (MSE), dan model dengan nilai error terendah akan dipilih sebagai model utama
 
 ## Data Understanding
 
-Dataset yang digunakan diambil dari situs Kaggle dengan nama [Pima Indians Diabetes Database](https://www.kaggle.com/datasets/uciml/pima-indians-diabetes-database). Dataset ini berasal dari National Institute of Diabetes and Digestive and Kidney Diseases. Tujuan utama dari dataset ini adalah untuk memprediksi secara diagnostik apakah seorang pasien menderita diabetes atau tidak, berdasarkan beberapa pengukuran diagnostik yang terdapat dalam dataset. Secara khusus, seluruh pasien dalam dataset ini adalah wanita berusia minimal 21 tahun yang berasal dari suku Indian Pima.Datase terdiri dari :
+Dataset yang digunakan diambil dari situs Kaggle dengan nama [Pima Indians Diabetes Database](https://www.kaggle.com/datasets/uciml/pima-indians-diabetes-database). Dataset ini berasal dari National Institute of Diabetes and Digestive and Kidney Diseases. Dataset ini terdiri dari 768 data. Tujuan utama dari dataset ini adalah untuk memprediksi secara diagnostik apakah seorang pasien menderita diabetes atau tidak, berdasarkan beberapa pengukuran diagnostik yang terdapat dalam dataset. Secara khusus, seluruh pasien dalam dataset ini adalah wanita berusia minimal 21 tahun yang berasal dari suku Indian Pima.Datase terdiri dari :
 1. Variabel Prediktor
    1. Pregnancies – Jumlah kehamilan yang pernah dialami. 
    2. Glucose – Konsentrasi glukosa dalam plasma setelah puasa (tes gula darah puasa). 
@@ -179,9 +184,10 @@ Dari tabel diatas, dapat diketahui bahwa terdapat beberapa data pada dataset yan
 ## Data Preparation
 Agar dataset lebih mudah dipahami oleh model, dataset harus dipersiapkan dengan cara tertentu. Beberapa metode dapat diterapkan dalam tahap persiapan data, dan metode yang akan digunakan dalam proyek ini yaitu:
 * Mengganti missing value dengan median pada setiap variabel bertujuan untuk mencegah distorsi yang mungkin terjadi jika menggunakan rata-rata, yang sangat dipengaruhi oleh outlier. Median lebih stabil terhadap nilai ekstrem, serta membantu menjaga keseimbangan data dan mengurangi potensi overfitting atau bias yang dapat muncul jika missing value diganti dengan nilai yang tidak representatif. Oleh karena itu, mengganti missing value dengan median adalah metode yang lebih efektif dan dapat diandalkan dalam mempersiapkan data untuk model machine learning.
+* Mengapus Beberapa outlier yang didapatkan dari pemeriksaan outliers dengan metode LOF. Proses ini bertujuan untuk meningkatkan kualitas data dengan menghilangkan nilai-nilai yang dapat mengganggu hasil analisis. Dengan menghapus outlier, kita memastikan bahwa model yang dibangun tidak terpengaruh oleh nilai-nilai ekstrem yang tidak relevan dan bisa mengarah pada kesalahan dalam prediksi atau analisis.
 * Mengelompokan data numerik ke babebarap kategori. Proses ini melibatkan pengelompokan nilai numerik pada variabel Glucose, BMI, dan Insulin ke dalam beberapa kategori. Langkah ini dilakukan karena pada beberapa algoritma machine learning, khususnya yang berbasis klasifikasi seperti decision tree atau model berbasis aturan, mengonversi data numerik menjadi kategori dapat meningkatkan stabilitas model dan membantu dalam menghasilkan prediksi yang lebih akurat.
 * Menerapkan teknik encoding pada data kategori yang dibuat sebelumnya. Penerapan teknik encoding pada data kategorikal bertujuan mengubah nilai kategori atau label menjadi format numerik agar dapat diproses oleh algoritma machine learning, yang umumnya hanya mengenali data numerik. Encoding membantu model memahami hubungan antar fitur. Pada tahap ini, teknik yang digunakan adalah One-Hot Encoding dan diterapkan pada data kategorikal yang telah dibuat sebelumnya.
-
+* Memisahkan data-data kategorik dan label dari dataset. Pemisahan fitur kategorik dan label bertujuan untuk memastikan bahwa hanya fitur numerik yang dikenakan standarisasi. Dengan memisahkan keduanya, kita dapat menghindari penerapan standarisasi pada data kategorik atau label yang tidak memerlukan perubahan. Hal ini membantu proses model menjadi lebih efisien dan akurat, karena standarisasi hanya diterapkan pada data numerik tanpa mengubah informasi penting pada data kategorik dan label.
 * Melakukan standarisasi pada data numerik. Standarisasi adalah proses mengubah nilai fitur dalam dataset ke skala tertentu agar memiliki rentang yang seragam. Ini penting untuk algoritma seperti regresi linier, KNN, dan SVM yang sensitif terhadap perbedaan skala antar fitur. Tanpa standarisasi, fitur dengan nilai besar bisa mendominasi model. Dalam proyek ini, fitur yang akan distandarisasi meliputi Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin, BMI, DiabetesPedigreeFunction, dan Age. Fitur lain tidak distandarisasi karena memiliki skala yang sudah cukup besar. Proses ini akan menggunakan fungsi *RobustScaler* dari library scikit-learn.
 * Membagi dataset unutk train dan test. Pembagian dataset dilakukan menggunakan fungsi *train\_test\_split* dari library scikit-learn, yang berfungsi membagi data menjadi data latih dan data uji. Pembagian ini penting untuk mengukur akurasi model secara objektif. Dalam proses ini, data dibagi dengan proporsi 80% untuk pelatihan dan 20% untuk pengujian.
 * Meyeimbangkan data. Penyeimbangan data dilakukan dengan memperbanyak data pada kelas minoritas agar setara dengan kelas mayoritas, sehingga model tidak bias. Tujuannya adalah agar model dapat mengenali kedua kelas secara adil dan menghasilkan prediksi yang lebih akurat. Metode yang digunakan adalah SMOTE, yang hanya diterapkan pada data latih. Penerapan SMOTE pada data uji dihindari karena dapat menciptakan data sintetis yang tidak merepresentasikan kondisi nyata, sehingga berisiko menyebabkan evaluasi model menjadi tidak realistis dan terlalu optimis.
@@ -234,7 +240,7 @@ XGBoost sulit dipahami, sehingga kurang cocok untuk aplikasi yang membutuhkan tr
 * **Sensitivitas terhadap Data Tidak Seimbang**: XGBoost cenderung bias terhadap kelas mayoritas pada data tidak seimbang, memerlukan teknik tambahan untuk mengatasi hal ini.
 * **Kompleksitas dan Tuning**: Tuning XGBoost rumit dan memakan waktu karena banyak hyperparameter yang perlu disesuaikan.
 * **Konsumsi Sumber Daya**: Pelatihan XGBoost pada dataset besar membutuhkan sumber daya komputasi yang besar, meskipun penggunaan GPU dapat mempercepat proses.
-#### Parameter
+#### Parameter yang Digunakan untuk Hyperparameter Tuning Model
 * n_estimator = Menentukan jumlah total pohon (trees) yang akan dibangun dalam model. Diantara (50, 100, 200) dengan menggunakan GridSearch didapat nilai yang terbaik untuk parameter adalah 100.
 * learning_rate = Menentukan laju pembelajaran atau seberapa besar kontribusi setiap pohon terhadap prediksi akhir. Diantara (0.01, 0.1, 0.3) dengan menggunakan GridSearch didapat nilai yang terbaik untuk parameter adalah 0,3.
 * max_depth = Menentukan kedalaman maksimum pohon keputusan. Diantara (3, 5, 7) dengan menggunakan GridSearch didapat nilai yang terbaik untuk parameter adalah 7.
@@ -242,6 +248,7 @@ XGBoost sulit dipahami, sehingga kurang cocok untuk aplikasi yang membutuhkan tr
 * subsample = Menentukan proporsi data pelatihan yang akan digunakan untuk membangun setiap pohon. Diantara (0.8, 0.9, 1.0) dengan menggunakan GridSearch didapat nilai yang terbaik untuk parameter adalah 0,9.
 * colsample_bytree = Menentukan proporsi fitur yang digunakan untuk membangun setiap pohon. Diantara (0.8, 0.9, 1.0) dengan menggunakan GridSearch didapat nilai yang terbaik untuk parameter adalah 0,8.
 * gamma = Menentukan pengurangan loss yang diperlukan untuk membagi node lebih lanjut. Diantara (0, 0.1, 0.2) dengan menggunakan GridSearch didapat nilai yang terbaik untuk parameter adalah 0,1.
+
 ### Random Forest 
 Random Forest Classifier adalah metode ensemble learning dan algoritma supervised learning yang digunakan untuk tugas klasifikasi maupun regresi. Algoritma ini bekerja dengan membangun sejumlah pohon keputusan (decision tree) dan menggabungkannya untuk menghasilkan prediksi yang lebih stabil dan akurat.
 #### Kelebihan
@@ -253,13 +260,14 @@ Random Forest Classifier adalah metode ensemble learning dan algoritma supervise
 * **Interpretabilitas Terbatas**: Pengaruh fitur sulit diinterpretasikan karena melibatkan banyak pohon keputusan.
 * **Parameter yang Perlu Diatur**: Memerlukan eksperimen dan penyesuaian parameter, seperti jumlah pohon dan pemilihan fitur acak, untuk hasil yang optimal.
 * **Kesulitan pada Data Dimensionalitas Tinggi**: Random Forest kesulitan menangani data dengan banyak fitur dibandingkan jumlah sampel, yang dapat menurunkan akurasi prediksi.
-#### Parameter
+#### Parameter yang Digunakan untuk Hyperparameter Tuning Model
 * n_estimator = Menentukan jumlah total pohon (trees) yang akan dibangun dalam model. Diantara (50, 100, 200) dengan menggunakan GridSearch didapat nilai yang terbaik untuk parameter adalah 100.
 * max_depth = Menentukan kedalaman maksimum pohon keputusan. Diantara (None, 10, 20, 30) dengan menggunakan GridSearch didapat nilai yang terbaik untuk parameter adalah None.
 * min_samples_split = Menentukan jumlah sampel minimum yang diperlukan untuk membagi sebuah node. Diantara (2, 5, 10) dengan menggunakan GridSearch didapat nilai yang terbaik untuk parameter adalah 5.
 * min_samples_leaf = Menentukan jumlah sampel minimum yang harus ada di daun pohon. Diantara (1, 2, 4) dengan menggunakan GridSearch didapat nilai yang terbaik untuk parameter adalah 2.
 * max_features = Menentukan jumlah maksimum fitur yang akan dipertimbangkan untuk pemisahan setiap node. Diantara ('auto', 'sqrt', 'log2') dengan menggunakan GridSearch didapat nilai yang terbaik untuk parameter adalah sqrt.
 * bootstrap = Menentukan apakah sampel bootstrap (sampling dengan pengembalian) digunakan untuk membangun pohon. Diantara (True, False) dengan menggunakan GridSearch didapat nilai yang terbaik untuk parameter adalah False.
+
 ### AdaBoost
 Adaptive Boosting (AdaBoost) adalah teknik boosting yang digunakan sebagai metode ensemble dalam machine learning. Algoritma AdaBoost bekerja dengan cara melatih weak learners, seperti decision tree atau model linear, secara iteratif pada dataset. Setiap instance dalam dataset diberikan bobot berdasarkan kesalahan klasifikasinya, sehingga model lebih fokus pada instance yang sulit untuk diprediksi.
 #### Kelebihan
@@ -270,7 +278,7 @@ Adaptive Boosting (AdaBoost) adalah teknik boosting yang digunakan sebagai metod
 * **Sensitif terhadap Outlier**: Outlier dapat memengaruhi bobot sampel dan menghasilkan model yang kurang optimal, sehingga preprocessing data yang hati-hati diperlukan.
 * **Ketergantungan pada Kualitas Data Latih**: Kualitas dataset pelatihan sangat mempengaruhi kinerja algoritma; data yang tidak representatif atau bias dapat mengurangi kemampuan model dalam menggeneralisasi.
 * **Waktu Pelatihan yang Relatif Lambat**: Algoritma ini memerlukan iterasi berulang dalam membangun model, yang dapat memakan waktu lama, terutama untuk dataset besar.
-#### Parameter
+#### Parameter yang Digunakan untuk Hyperparameter Tuning Model
 * n_estimator = Menentukan jumlah total pohon (trees) yang akan dibangun dalam model. Diantara (50, 100, 200) dengan menggunakan GridSearch didapat nilai yang terbaik untuk parameter adalah 200.
 * learning_rate = Menentukan laju pembelajaran atau seberapa besar kontribusi setiap pohon terhadap prediksi akhir. Diantara (0.01, 0.1, 1.0) dengan menggunakan GridSearch didapat nilai yang terbaik untuk parameter adalah 1,0.
 * estimator_max_depth = mengatur kedalaman maksimum dari pohon keputusan yang digunakan sebagai estimator dasar (base estimator). Diantara (1, 3, 5) dengan menggunakan GridSearch didapat nilai yang terbaik untuk parameter adalah 5.
@@ -285,7 +293,7 @@ Bagging adalah metode pembelajaran ansambel yang digunakan untuk mengurangi vari
 #### Kekurangan
 * **Waktu Pelatihan Lama**: Melatih banyak model dapat memerlukan waktu komputasi yang lebih lama.
 * **Tidak Menurunkan Bias**: Bagging tidak selalu berhasil mengurangi bias, terutama jika model dasar memiliki bias yang tinggi.
-#### Parameter
+#### Parameter yang Digunakan untuk Hyperparameter Tuning Model
 * n_estimator = Menentukan jumlah estimator (atau "weak learners") yang digunakan dalam ensemble. Diantara (10, 50, 100) dengan menggunakan GridSearch didapat nilai yang terbaik untuk parameter adalah 50.
 * max_samples = Menentukan proporsi data pelatihan yang digunakan untuk membangun setiap estimator dalam ensemble. Diantara (0.5, 0.8, 1.0) dengan menggunakan GridSearch didapat nilai yang terbaik untuk parameter adalah 1,0.
 * max_features = Menentukan proporsi fitur yang digunakan untuk membangun setiap estimator dalam ensemble. Diantara (0.5, 0.8, 1.0) dengan menggunakan GridSearch didapat nilai yang terbaik untuk parameter adalah 0,5.
@@ -306,7 +314,7 @@ LightGBM adalah algoritma machine learning yang menggunakan teknik gradient boos
 * **Parameter Tuning Rumit**: Membutuhkan penyesuaian parameter yang cermat untuk mencapai performa optimal.
 * **Kurang Optimal untuk Data Kecil**: Pada dataset kecil, LGBM tidak selalu lebih unggul dibandingkan model lain seperti XGBoost atau Random Forest.
 * **Sulit Diinterpretasikan**: Model yang kompleks membuat interpretasi hasil lebih sulit dibandingkan model linear.
-#### Parameter
+#### Parameter yang Digunakan untuk Hyperparameter Tuning Model
 * n_estimator = Menentukan jumlah total pohon (trees) yang akan dibangun dalam model. Diantara (50, 100, 200) dengan menggunakan GridSearch didapat nilai yang terbaik untuk parameter adalah 50.
 * learning_rate = Menentukan laju pembelajaran atau seberapa besar kontribusi setiap pohon terhadap prediksi akhir. Diantara (0.01, 0.1, 0.2) dengan menggunakan GridSearch didapat nilai yang terbaik untuk parameter adalah 0,2.
 * num_leaves = Menentukan jumlah maksimum daun (leaf nodes) dalam setiap pohon. Diantara (31, 50, 100) dengan menggunakan GridSearch didapat nilai yang terbaik untuk parameter adalah 50.
@@ -315,6 +323,7 @@ LightGBM adalah algoritma machine learning yang menggunakan teknik gradient boos
 * subsample = Menentukan proporsi sampel yang digunakan untuk membangun setiap pohon. Diantara (0.6, 0.8, 1.0) dengan menggunakan GridSearch didapat nilai yang terbaik untuk parameter adalah 0,6.
 * colsample_bytree = Menentukan proporsi fitur yang digunakan untuk setiap pohon. Diantara (0.6, 0.8, 1.0) dengan menggunakan GridSearch didapat nilai yang terbaik untuk parameter adalah 1,0.
 * boosting_type = Menentukan jenis boosting yang digunakan dalam model. Diantara ('gbdt', 'dart') dengan menggunakan GridSearch didapat jenis yang terbaik untuk parameter adalah gbdt.
+
 ### Stacking Model
 Stacking adalah teknik ensemble yang menggabungkan beberapa model machine learning. Cara kerjanya adalah dengan melatih beberapa model berbeda, kemudian menggunakan model yang lebih tinggi (meta-model) untuk menggabungkan hasil prediksi dari model-model tersebut dan menghasilkan prediksi akhir yang lebih akurat. meta-model yang digunakan pada project ini adalah model LogisticRegression.
 #### Kelebihan
@@ -327,13 +336,14 @@ Stacking adalah teknik ensemble yang menggabungkan beberapa model machine learni
 * **Risiko Overfitting**: Tanpa validasi silang yang tepat, stacking bisa menyebabkan overfitting pada data pelatihan.
 * **Interpretasi Sulit**: Prediksi berasal dari gabungan banyak model, sehingga sulit untuk dijelaskan secara intuitif.
 * **Implementasi Lebih Rumit**: Dibandingkan dengan model tunggal, stacking memerlukan pipeline pelatihan dan prediksi yang lebih kompleks.
-#### Parameter
+#### Parameter yang Digunakan untuk Hyperparameter Tuning Model
 * final_estimator__C = Menentukan kekuatan regularisasi dalam model. Diantara (0.01, 0.1, 1, 10) dengan menggunakan GridSearch didapat nilai yang terbaik untuk parameter adalah 1. 
 * final_estimator__C = Menentukan jenis regularisasi yang digunakan dalam model. Diantara ('l2', 'l1') dengan menggunakan GridSearch didapat jenis yang terbaik untuk parameter adalah l2.
+
 ## Evaluation
 Pada tahap evaluasi, akan digunakan F-1 Score untuk mengukur kesalahan prediksi model dalam memprediksi penyakit diabetes. F-1 score adalah metrik evaluasi yang mengukur keseimbangan antara precision dan recall untuk menilai kinerja model, terutama pada data yang tidak seimbang, dengan nilai lebih tinggi menunjukkan performa model yang lebih baik dalam mengklasifikasikan data secara akurat. F-1 Score didapatkan dariperhitungan kombinasi dari nilai precision dan nilai recall yang kemudian hasilnya disebut sebagai rata rata harmonis. Rata-rata harmonis memberikan lebih banyak bobot pada nilai yang lebih kecil. Artinya, jika Precision dan Recall sangat berbeda (misalnya, satu sangat tinggi dan satu sangat rendah), F1-Score akan lebih dipengaruhi oleh nilai yang lebih rendah, yang mendorong kita untuk memperbaiki kinerja model secara keseluruhan. Nilai F1-Score yang lebih tinggi menunjukkan kinerja model yang baik dalam menangani keseimbangan antara mendeteksi kasus positif dengan benar (Recall) dan meminimalkan kesalahan dalam prediksi positif (Precision). Rumus untuk menghitung F-1 Score adalah sebagai berikut:
 
-![F-1 Score](https://github.com/XMB234/Tugas-Machine-Learning-Terapan-Predictive-Analytic-/blob/4d03772bc9f182f17374cd471d245c9653be1758/F-1%20Score.jpg)
+![F-1 Score](https://raw.githubusercontent.com/XMB234/Tugas-Machine-Learning-Terapan-Predictive-Analytic-/refs/heads/main/F-1%20Score.jpg) 
 
 Berikut nilai  F-1 Score untuk masing masing model dalam memprediks penyakit diabetes
 
@@ -346,10 +356,11 @@ Berikut nilai  F-1 Score untuk masing masing model dalam memprediks penyakit dia
 | AdaBoost            | 0.8462   |
 | Stacking            | 0.8515   |
 
-Dari diagram tersebut dapat dilihat bahwa model stacking memiliki nilai F-1 Score paling tinggi pada test set. Maka stacking akan digunkan pada proyek ini dalam memprediksi penyakit diabetes berdasarkan fitur Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin, DiabetesPedigreeFunction, dan Age.
+Dari tabel tersebut dapat dilihat bahwa model stacking memiliki nilai F-1 Score paling tinggi pada test set. Model stacking yang memiliki performa terbaik dalam hal F-1 Score, kita dapat memastikan bahwa model ini mampu memberikan prediksi yang lebih akurat dalam mengidentifikasi pasien yang berisiko diabetes. Hal ini sangat relevan dengan tujuan bisnis yang bertujuan menemukan membangun dan mengembangkan model machine dengan performa terbaik dalam memprediksi penyakit diabetes berdasarkan sejumlah fitur yang tersedia. Dengan demikian, performa model yang baik tidak hanya meningkatkan akurasi prediksi, tetapi juga memberikan dampak positif terhadap pengembangan solusi berbasis machine learning yang dapat diterapkan dalam praktik medis. Maka model stacking akan digunkan pada proyek ini dalam memprediksi penyakit diabetes berdasarkan fitur Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin, DiabetesPedigreeFunction, dan Age.
 
 ## Kesimpulan 
 Dengan menerapkan beberapa metode, dari keenam model yang telah diuji, model stacking merupakan model yang memiliki peforma paling bagys dan mampu memprediksi penyakit diabetes dengan tepat. Tujuan dari proyek dalam mengatasi permasalahan yang telah disebutkan telah dapat tercapai.
+
 ## Referensi
 1. Ahmadi, T., Wulandari, A., & Suhatman, H. (2019). Sistem Customer Churn Prediction Menggunakan Machine Learning pada Perusahaan ISP. Jetri: Jurnal Ilmiah Teknik Elektro, 17.
 2. Apriliah, W., Kurniawan, I., Baydhowi, M., & Haryati, T. (2021). Prediksi Kemungkinan Diabetes pada Tahap Awal Menggunakan Algoritma Klasifikasi Random Forest. SISTEMASI, 10(1), 163. https://doi.org/10.32520/stmsi.v10i1.1129
