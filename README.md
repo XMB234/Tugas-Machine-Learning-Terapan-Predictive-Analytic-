@@ -20,8 +20,8 @@ Dalam menyelesaikan permasalahan tersebut, berikut beberapa solusi yang akan dil
 ### Solution statements
 Untuk mencapai tujuan tersebut, maka :
 * Dilakukan pencarian beberapa model yang memiliki peforma bagsu dengan menggunakan Pustaka lazypredict untuk mengevaluasi dan membandingkan berbagai model guna menentukan yang paling efektif
-* Membuat dan melakukan hyperparameter tuning pada beberapa model dengan performa terbaik yang diperoleh dari eksplorasi menggunakan lazypredict. Selanjutnya, akurasi masing-masing model akan dievaluasi menggunakan metode mean squared error (MSE), dan model dengan nilai error terendah akan dipilih sebagai model utama
-
+* Melakukan hyperparameter tuning pada beberapa model terbaik hasil eksplorasi menggunakan LazyPredict. Evaluasi kinerja dilakukan menggunakan metrik klasifikasi F1-Score, Recall, dan Precision, yang dipilih karena mampu menilai keseimbangan antara ketepatan dan keberhasilan model dalam mendeteksi kasus positif. Model dengan F1-Score tertinggi dipilih sebagai model utama dalam sistem prediksi.
+  
 ## Data Understanding
 
 Dataset yang digunakan diambil dari situs Kaggle dengan nama [Pima Indians Diabetes Database](https://www.kaggle.com/datasets/uciml/pima-indians-diabetes-database). Dataset ini berasal dari National Institute of Diabetes and Digestive and Kidney Diseases. Dataset ini terdiri dari 768 data. Tujuan utama dari dataset ini adalah untuk memprediksi secara diagnostik apakah seorang pasien menderita diabetes atau tidak, berdasarkan beberapa pengukuran diagnostik yang terdapat dalam dataset. Secara khusus, seluruh pasien dalam dataset ini adalah wanita berusia minimal 21 tahun yang berasal dari suku Indian Pima.Datase terdiri dari :
@@ -226,7 +226,7 @@ Proyek ini berfokus pada masalah prediksi apakah seseorang akan terkena diabetes
 | Perceptron                     | 0.69     | 0.70               | 0.70    | 0.70     | 0.02       |
 | DummyClassifier                | 0.66     | 0.50               | 0.50    | 0.53     | 0.02       |
 
-Kita akan menggunakan lima algoritma terbaik berdasarkan hasil dari LazyPredict. Berdasarkan tabel, LazyPredict, algoritma XGBoost, Random Forest, AdaBoost, Bagging, dan LightGBM menunjukkan performa terbaik. Oleh karena itu, kita akan membangun kelima model ini dan berfokus untuk mengoptimalkan performanya lebih lanjut melalui teknik hyperparameter tuning pada setiap model yang akan diuji. Selain itu, kita juga akan membuat model stacking yang menggabungkan model model tersebut menjadi satu model.
+Kita akan menggunakan lima algoritma terbaik berdasarkan hasil dari LazyPredict. Berdasarkan tabel, LazyPredict, algoritma XGBoost, Random Forest, AdaBoost, Bagging, dan LightGBM menunjukkan performa terbaik. Oleh karena itu, kita akan membangun kelima model ini dan berfokus untuk mengoptimalkan performanya lebih lanjut melalui teknik hyperparameter tuning pada setiap model yang akan diuji.
 
 ### XGBoost
 XGBoost adalah teknik optimisasi berbasis pohon keputusan yang dibangun menggunakan metode penurunan gradien. Cara kerjanya adalah dengan menggabungkan hasil prediksi dari beberapa pohon keputusan. Pohon pertama menghasilkan prediksi awal, kemudian pohon berikutnya akan membuat prediksi berdasarkan kesalahan (residual) dari prediksi yang dibuat oleh pohon sebelumnya. Proses ini berlanjut hingga model mencapai prediksi yang lebih akurat. Teknik ini dikenal sangat efektif dalam meningkatkan akurasi model dengan cara meminimalkan kesalahan prediksi secara bertahap.
@@ -324,22 +324,6 @@ LightGBM adalah algoritma machine learning yang menggunakan teknik gradient boos
 * colsample_bytree = Menentukan proporsi fitur yang digunakan untuk setiap pohon. Diantara (0.6, 0.8, 1.0) dengan menggunakan GridSearch didapat nilai yang terbaik untuk parameter adalah 1,0.
 * boosting_type = Menentukan jenis boosting yang digunakan dalam model. Diantara ('gbdt', 'dart') dengan menggunakan GridSearch didapat jenis yang terbaik untuk parameter adalah gbdt.
 
-### Stacking Model
-Stacking adalah teknik ensemble yang menggabungkan beberapa model machine learning. Cara kerjanya adalah dengan melatih beberapa model berbeda, kemudian menggunakan model yang lebih tinggi (meta-model) untuk menggabungkan hasil prediksi dari model-model tersebut dan menghasilkan prediksi akhir yang lebih akurat. meta-model yang digunakan pada project ini adalah model LogisticRegression.
-#### Kelebihan
-* **Peningkatan Akurasi**: Stacking seringkali meningkatkan akurasi prediksi dibandingkan dengan menggunakan model dasar secara tunggal.
-* **Peningkatan Generalisasi**: Stacking dapat meningkatkan kemampuan model untuk membuat prediksi yang lebih baik pada data baru.
-* **Fleksibilitas**: Stacking dapat menggabungkan berbagai jenis model dasar, memanfaatkan kelebihan masing-masing model untuk hasil yang lebih optimal.
-#### Kekurangan
-* **Kompleksitas Tinggi**: Stacking menggabungkan banyak model, sehingga struktur model menjadi kompleks dan sulit dipahami.
-* **Waktu dan Sumber Daya Lebih Besar**: Melatih beberapa model sekaligus memakan waktu dan membutuhkan komputasi yang lebih tinggi.
-* **Risiko Overfitting**: Tanpa validasi silang yang tepat, stacking bisa menyebabkan overfitting pada data pelatihan.
-* **Interpretasi Sulit**: Prediksi berasal dari gabungan banyak model, sehingga sulit untuk dijelaskan secara intuitif.
-* **Implementasi Lebih Rumit**: Dibandingkan dengan model tunggal, stacking memerlukan pipeline pelatihan dan prediksi yang lebih kompleks.
-#### Parameter yang Digunakan untuk Hyperparameter Tuning Model
-* final_estimator__C = Menentukan kekuatan regularisasi dalam model. Diantara (0.01, 0.1, 1, 10) dengan menggunakan GridSearch didapat nilai yang terbaik untuk parameter adalah 1. 
-* final_estimator__C = Menentukan jenis regularisasi yang digunakan dalam model. Diantara ('l2', 'l1') dengan menggunakan GridSearch didapat jenis yang terbaik untuk parameter adalah l2.
-
 ## Evaluation
 Pada tahap evaluasi, akan digunakan F-1 Score untuk mengukur kesalahan prediksi model dalam memprediksi penyakit diabetes. F-1 score adalah metrik evaluasi yang mengukur keseimbangan antara precision dan recall untuk menilai kinerja model, terutama pada data yang tidak seimbang, dengan nilai lebih tinggi menunjukkan performa model yang lebih baik dalam mengklasifikasikan data secara akurat. F-1 Score didapatkan dariperhitungan kombinasi dari nilai precision dan nilai recall yang kemudian hasilnya disebut sebagai rata rata harmonis. Rata-rata harmonis memberikan lebih banyak bobot pada nilai yang lebih kecil. Artinya, jika Precision dan Recall sangat berbeda (misalnya, satu sangat tinggi dan satu sangat rendah), F1-Score akan lebih dipengaruhi oleh nilai yang lebih rendah, yang mendorong kita untuk memperbaiki kinerja model secara keseluruhan. Nilai F1-Score yang lebih tinggi menunjukkan kinerja model yang baik dalam menangani keseimbangan antara mendeteksi kasus positif dengan benar (Recall) dan meminimalkan kesalahan dalam prediksi positif (Precision). Rumus untuk menghitung F-1 Score adalah sebagai berikut:
 
@@ -347,19 +331,25 @@ Pada tahap evaluasi, akan digunakan F-1 Score untuk mengukur kesalahan prediksi 
 
 Berikut nilai  F-1 Score untuk masing masing model dalam memprediks penyakit diabetes
 
-| Model               | F1-Score |
-|---------------------|----------|
-| XGB                 | 0.8350   |
-| Random Forest       | 0.8317   |
-| Bagging Classifier  | 0.8350   |
-| LightGBM            | 0.8350   |
-| AdaBoost            | 0.8462   |
-| Stacking            | 0.8515   |
+| Model              | F1-Score | Recall  | Precision |
+|--------------------|----------|---------|-----------|
+| XGB                | 0.8350   | 0.8431  | 0.8269    |
+| Random Forest      | 0.8317   | 0.8235  | 0.8400    |
+| Bagging Classifier | 0.8350   | 0.8431  | 0.8269    |
+| LightGBM           | 0.8350   | 0.8431  | 0.8269    |
+| AdaBoost           | 0.8515   | 0.8431  | 0.8600    |
 
-Dari tabel tersebut dapat dilihat bahwa model stacking memiliki nilai F-1 Score paling tinggi pada test set. Model stacking yang memiliki performa terbaik dalam hal F-1 Score, kita dapat memastikan bahwa model ini mampu memberikan prediksi yang lebih akurat dalam mengidentifikasi pasien yang berisiko diabetes. Hal ini sangat relevan dengan tujuan bisnis yang bertujuan menemukan membangun dan mengembangkan model machine dengan performa terbaik dalam memprediksi penyakit diabetes berdasarkan sejumlah fitur yang tersedia. Dengan demikian, performa model yang baik tidak hanya meningkatkan akurasi prediksi, tetapi juga memberikan dampak positif terhadap pengembangan solusi berbasis machine learning yang dapat diterapkan dalam praktik medis. Maka model stacking akan digunkan pada proyek ini dalam memprediksi penyakit diabetes berdasarkan fitur Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin, DiabetesPedigreeFunction, dan Age.
+Berdasarkan hasil evaluasi model yang ditunjukkan pada tabel, dapat dilihat bahwa model AdaBoost memberikan performa terbaik dibandingkan model-model lainnya dalam hal F1-Score, Recall, dan Precision. AdaBoost memperoleh nilai F1-Score sebesar 0.8515, dengan Recall sebesar 0.8431 dan Precision sebesar 0.8600. Nilai ini menunjukkan bahwa model tidak hanya mampu mendeteksi sebagian besar kasus diabetes secara benar (recall tinggi), tetapi juga membuat prediksi positif yang akurat (precision tinggi), sehingga menghasilkan keseimbangan kinerja yang sangat baik secara keseluruhan (F1-score tinggi).
+Model lain seperti XGB, Bagging Classifier, dan LightGBM menunjukkan performa yang identik, masing-masing dengan F1-Score sebesar 0.8350, Recall 0.8431, dan Precision 0.8269. Meskipun nilai recall mereka cukup tinggi, nilai precision sedikit lebih rendah dibandingkan dengan AdaBoost, yang berarti prediksi positifnya sedikit kurang tepat. Random Forest juga menunjukkan performa yang kompetitif dengan F1-Score sebesar 0.8317, recall sedikit lebih rendah yaitu 0.8235, namun precision tertinggi kedua yaitu 0.8400.
+Secara keseluruhan, model AdaBoost menempati posisi teratas dalam hal keseimbangan antara kemampuan mendeteksi kasus positif dan ketepatan prediksi, menjadikannya kandidat terbaik untuk digunakan dalam sistem prediksi penyakit diabetes berdasarkan metrik evaluasi yang digunakan.
+Hal ini secara langsung menjawab problem statement dalam proyek, yaitu bagaimana memanfaatkan machine learning untuk menghasilkan sistem prediksi penyakit diabetes yang akurat, cepat, dan minim kesalahan. Dengan nilai recall yang tinggi, model mampu mendeteksi sebagian besar pasien yang benar-benar menderita diabetes, sehingga membantu mencegah keterlambatan diagnosis. Precision yang tinggi menunjukkan bahwa prediksi positif yang dihasilkan oleh model juga dapat diandalkan, mengurangi potensi kesalahan diagnosis yang dapat menimbulkan kecemasan atau intervensi medis yang tidak perlu.
+Dari segi pencapaian goals proyek, proses eksplorasi awal yang dilakukan menggunakan berbagai algoritma machine learning telah berhasil mengidentifikasi model-model potensial. Model-model tersebut kemudian dibangun ulang, dioptimalkan, dan dievaluasi menggunakan metrik yang tepat untuk klasifikasi, yaitu Recall, Precision, dan F1-Score. Metrik ini dipilih karena mampu menggambarkan keseimbangan antara kemampuan model dalam menangkap kasus positif dan ketepatan prediksi yang dihasilkan. Dua aspek yang sangat penting dalam konteks diagnosis penyakit. Oleh karena itu, model terbaik yang teridentifikasi tidak hanya memberikan akurasi teknis yang tinggi, tetapi juga memiliki relevansi kuat terhadap kebutuhan medis dan klinis.
+Dari perspektif konteks bisnis dan kesehatan, penerapan model dengan performa tinggi seperti AdaBoost berpotensi memberikan dampak signifikan, terutama dalam mendukung deteksi dini diabetes. Sistem prediktif yang akurat dapat membantu fasilitas layanan kesehatan untuk mengklasifikasikan pasien berisiko lebih cepat, mengoptimalkan alokasi sumber daya medis, dan merancang strategi pencegahan serta edukasi yang lebih tepat sasaran. Selain itu, model ini juga bisa diintegrasikan ke dalam sistem penunjang keputusan medis, memberikan rekomendasi kepada tenaga medis berdasarkan analisis data secara otomatis. Hal ini tentu berkontribusi pada peningkatan efisiensi operasional, pengurangan biaya pemeriksaan, dan peningkatan kualitas hidup pasien melalui penanganan yang lebih dini dan tepat.
+Dari hasil evaluasi dan penjelasan diatas, maka model AdaBoost akan digunkan pada proyek ini dalam memprediksi penyakit diabetes berdasarkan fitur Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin, DiabetesPedigreeFunction, dan Age.
 
 ## Kesimpulan 
-Dengan menerapkan beberapa metode, dari keenam model yang telah diuji, model stacking merupakan model yang memiliki peforma paling bagys dan mampu memprediksi penyakit diabetes dengan tepat. Tujuan dari proyek dalam mengatasi permasalahan yang telah disebutkan telah dapat tercapai.
+Dengan menerapkan berbagai metode dan evaluasi terhadap enam model machine learning, **AdaBoost terbukti menjadi model dengan performa terbaik** dalam memprediksi penyakit diabetes secara akurat. Model ini menunjukkan keseimbangan yang unggul antara kemampuan mendeteksi kasus positif dan ketepatan prediksi, menjadikannya pilihan yang paling andal. Berdasarkan hasil tersebut, tujuan utama proyek berhasil dicapai, yaitu mengembangkan sistem prediksi penyakit diabetes yang efektif, akurat, dan relevan untuk mendukung pengambilan keputusan di bidang kesehatan.
+
 
 ## Referensi
 1. Ahmadi, T., Wulandari, A., & Suhatman, H. (2019). Sistem Customer Churn Prediction Menggunakan Machine Learning pada Perusahaan ISP. Jetri: Jurnal Ilmiah Teknik Elektro, 17.
