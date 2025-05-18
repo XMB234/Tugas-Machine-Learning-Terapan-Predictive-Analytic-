@@ -10,7 +10,7 @@ Berdasarkan latar belakang, pada proyek ini akan dibuat sebuah model machine lea
 ## Bussiness Understanding
 ### Problem Statements
 Selain menimbulkan masalah kesehatan langsung seperti gangguan pada kadar gula darah, penyakit diabetes juga dapat menyebabkan berbagai komplikasi serius yang dapat memengaruhi kualitas hidup penderitanya. Dari pernyataan tersebut, dapat ditarik kesimpulan bahwa permasalahan utama dapat dinyatakan dengan sebuah pertanyaan berikut:
-* Bagaimana memanfaatkan machine learning untuk menghasilkan sistem prediksi penyakit diabetes yang akurat, cepat, serta minim kesalahan dan bias berdasarak faktor-faktor penyakit diabetes
+* Bagaimana memanfaatkan machine learning untuk menghasilkan sistem prediksi penyakit diabetes yang akurat, serta minim kesalahan dan bias berdasarak faktor-faktor penyakit diabetes
 
 ### Goals
 Dalam menyelesaikan permasalahan tersebut, berikut beberapa solusi yang akan dilakukan pada proyek ini:
@@ -325,11 +325,29 @@ LightGBM adalah algoritma machine learning yang menggunakan teknik gradient boos
 * boosting_type = Menentukan jenis boosting yang digunakan dalam model. Diantara ('gbdt', 'dart') dengan menggunakan GridSearch didapat jenis yang terbaik untuk parameter adalah gbdt.
 
 ## Evaluation
-Pada tahap evaluasi, akan digunakan F-1 Score untuk mengukur kesalahan prediksi model dalam memprediksi penyakit diabetes. F-1 score adalah metrik evaluasi yang mengukur keseimbangan antara precision dan recall untuk menilai kinerja model, terutama pada data yang tidak seimbang, dengan nilai lebih tinggi menunjukkan performa model yang lebih baik dalam mengklasifikasikan data secara akurat. F-1 Score didapatkan dariperhitungan kombinasi dari nilai precision dan nilai recall yang kemudian hasilnya disebut sebagai rata rata harmonis. Rata-rata harmonis memberikan lebih banyak bobot pada nilai yang lebih kecil. Artinya, jika Precision dan Recall sangat berbeda (misalnya, satu sangat tinggi dan satu sangat rendah), F1-Score akan lebih dipengaruhi oleh nilai yang lebih rendah, yang mendorong kita untuk memperbaiki kinerja model secara keseluruhan. Nilai F1-Score yang lebih tinggi menunjukkan kinerja model yang baik dalam menangani keseimbangan antara mendeteksi kasus positif dengan benar (Recall) dan meminimalkan kesalahan dalam prediksi positif (Precision). Rumus untuk menghitung F-1 Score adalah sebagai berikut:
+Pada tahap evaluasi, metrik evaluasi yang digunakan adalah F1-Score, Recall, dan Precision. Penggunaan metrik f1-score, recall, dan precision sangat penting untuk mengevaluasi kinerja model secara menyeluruh karena tujuan utama dari model prediksi diabetes adalah untuk memastikan diagnosis yang akurat, yaitu untuk mengidentifikasi pasien yang benar-benar menderita diabetes tanpa terlalu banyak kesalahan prediksi. 
+
+Recall adalah metrik evaluasi yang mengukur seberapa banyak prediksi positif yang benar dibandingkan dengan jumlah data yang sebenarnya positif. Jadi, recall menunjukkan seberapa baik model dalam menangkap semua contoh positif yang ada. Recall sangat penting dalam konteks ini karena kita ingin meminimalkan jumlah false negatives, yaitu pasien yang benar-benar menderita diabetes tetapi tidak terdeteksi oleh model. Dalam dunia medis, false negatives bisa sangat berisiko karena dapat mengarah pada penundaan diagnosis dan penanganan yang terlambat, yang berpotensi menyebabkan komplikasi serius. Nilai recall yang tinggi berarti model jarang melewatkan contoh positif (False Negative rendah). Hal ini menunjukkan model berhasil mendeteksi banyak pasien yang menderita diabetes (yaitu, pasien yang benar-benar positif). Nilai recall yang tinggi sangat penting dalam konteks medis, karena kesalahan dalam bentuk false negative dapat menyebabkan pasien yang sakit tidak terdeteksi dan tidak mendapatkan perawatan yang dibutuhkan. Berikut rumus perhitungan recall:
+
+![Recall](https://raw.githubusercontent.com/XMB234/Tugas-Machine-Learning-Terapan-Predictive-Analytic-/c6cd3f3afcf2a6a13fa5e05c1d0da81d964165cf/Recall.jpg)
+
+Ket :
+* TP = True Positives (prediksi benar positif)
+* FN =  False Negatives (prediksi salah negatif)
+  
+Sementara itu, precision adalah metrik evaluasi yang mengukur seberapa banyak prediksi positif yang benar dari seluruh prediksi positif yang dilakukan oleh model. Dengan kata lain, presisi menunjukkan ketepatan model dalam mengklasifikasikan objek yang sebenarnya positif. Precision digunakan untuk memastikan bahwa ketika model memprediksi seseorang sebagai penderita diabetes, prediksi tersebut benar-benar akurat. Precision membantu menghindari false positives, yaitu pasien sehat yang salah didiagnosis menderita diabetes.  Nilai precision yang tinggi berarti model jarang mengklasifikasikan contoh negatif sebagai positif (false positive rendah). Hal ini mendakan bahwa ketika model memprediksi seseorang sebagai penderita diabetes, prediksi tersebut benar-benar akurat. Precision penting untuk menghindari pemberian diagnosis yang salah pada pasien yang sebenarnya sehat, yang bisa memicu kecemasan, pengobatan yang tidak perlu, atau intervensi medis yang tidak relevan. Berikut rumus perhitungan precision:
+
+![Presisi](https://raw.githubusercontent.com/XMB234/Tugas-Machine-Learning-Terapan-Predictive-Analytic-/462cefbb692f9a01d79e92cad7fe30968de2a9e8/Presisi1.jpg) 
+
+Ket: 
+* TP = True Positives (prediksi benar positif)
+* FP = False Positives (prediksi salah positif)
+
+F-Score adalah rata-rata harmonis antara presisi dan recall, yang memberikan keseimbangan antara keduanya. F1-Score sangat berguna ketika kita membutuhkan keseimbangan antara presisi dan recall dan tidak bisa memilih satu di antara keduanya. Ini sangat berguna karena menggabungkan dua metrik tersebut dalam satu angka yang menggambarkan keseimbangan antara kemampuan model untuk menangkap kasus positif (Recall) dan keakuratan dalam memprediksi kasus tersebut (Precision). Nilai F1-Score yang tinggi menunjukkan bahwa model dapat menangkap banyak kasus positif (recall tinggi) dan juga menghindari prediksi yang salah (precision tinggi). F1-Score sangat bermanfaat dalam kasus seperti ini karena memberikan penekanan pada model yang tidak hanya menangkap banyak kasus diabetes, tetapi juga meminimalkan kesalahan prediksi. Berikut rumus perhitungan f1-score:
 
 ![F-1 Score](https://raw.githubusercontent.com/XMB234/Tugas-Machine-Learning-Terapan-Predictive-Analytic-/refs/heads/main/F-1%20Score.jpg) 
 
-Berikut nilai  F-1 Score untuk masing masing model dalam memprediks penyakit diabetes
+Berikut tabel nilai-nilai recall, precision, dan f-1 score untuk masing masing model dalam memprediks penyakit diabetes
 
 | Model              | F1-Score | Recall  | Precision |
 |--------------------|----------|---------|-----------|
@@ -340,16 +358,19 @@ Berikut nilai  F-1 Score untuk masing masing model dalam memprediks penyakit dia
 | AdaBoost           | 0.8515   | 0.8431  | 0.8600    |
 
 Berdasarkan hasil evaluasi model yang ditunjukkan pada tabel, dapat dilihat bahwa model AdaBoost memberikan performa terbaik dibandingkan model-model lainnya dalam hal F1-Score, Recall, dan Precision. AdaBoost memperoleh nilai F1-Score sebesar 0.8515, dengan Recall sebesar 0.8431 dan Precision sebesar 0.8600. Nilai ini menunjukkan bahwa model tidak hanya mampu mendeteksi sebagian besar kasus diabetes secara benar (recall tinggi), tetapi juga membuat prediksi positif yang akurat (precision tinggi), sehingga menghasilkan keseimbangan kinerja yang sangat baik secara keseluruhan (F1-score tinggi).
+
 Model lain seperti XGB, Bagging Classifier, dan LightGBM menunjukkan performa yang identik, masing-masing dengan F1-Score sebesar 0.8350, Recall 0.8431, dan Precision 0.8269. Meskipun nilai recall mereka cukup tinggi, nilai precision sedikit lebih rendah dibandingkan dengan AdaBoost, yang berarti prediksi positifnya sedikit kurang tepat. Random Forest juga menunjukkan performa yang kompetitif dengan F1-Score sebesar 0.8317, recall sedikit lebih rendah yaitu 0.8235, namun precision tertinggi kedua yaitu 0.8400.
-Secara keseluruhan, model AdaBoost menempati posisi teratas dalam hal keseimbangan antara kemampuan mendeteksi kasus positif dan ketepatan prediksi, menjadikannya kandidat terbaik untuk digunakan dalam sistem prediksi penyakit diabetes berdasarkan metrik evaluasi yang digunakan.
-Hal ini secara langsung menjawab problem statement dalam proyek, yaitu bagaimana memanfaatkan machine learning untuk menghasilkan sistem prediksi penyakit diabetes yang akurat, cepat, dan minim kesalahan. Dengan nilai recall yang tinggi, model mampu mendeteksi sebagian besar pasien yang benar-benar menderita diabetes, sehingga membantu mencegah keterlambatan diagnosis. Precision yang tinggi menunjukkan bahwa prediksi positif yang dihasilkan oleh model juga dapat diandalkan, mengurangi potensi kesalahan diagnosis yang dapat menimbulkan kecemasan atau intervensi medis yang tidak perlu.
+
+Secara keseluruhan, model AdaBoost menempati posisi teratas dalam hal keseimbangan antara kemampuan mendeteksi kasus positif dan ketepatan prediksi, menjadikannya kandidat terbaik untuk digunakan dalam sistem prediksi penyakit diabetes berdasarkan metrik evaluasi yang digunakan. Hal ini secara langsung menjawab problem statement dalam proyek, yaitu bagaimana memanfaatkan machine learning untuk menghasilkan sistem prediksi penyakit diabetes yang akurat dan minim kesalahan. Dengan nilai recall yang tinggi, model mampu mendeteksi sebagian besar pasien yang benar-benar menderita diabetes, sehingga membantu mencegah keterlambatan diagnosis. Precision yang tinggi menunjukkan bahwa prediksi positif yang dihasilkan oleh model juga dapat diandalkan, mengurangi potensi kesalahan diagnosis yang dapat menimbulkan kecemasan atau intervensi medis yang tidak perlu.
+
 Dari segi pencapaian goals proyek, proses eksplorasi awal yang dilakukan menggunakan berbagai algoritma machine learning telah berhasil mengidentifikasi model-model potensial. Model-model tersebut kemudian dibangun ulang, dioptimalkan, dan dievaluasi menggunakan metrik yang tepat untuk klasifikasi, yaitu Recall, Precision, dan F1-Score. Metrik ini dipilih karena mampu menggambarkan keseimbangan antara kemampuan model dalam menangkap kasus positif dan ketepatan prediksi yang dihasilkan. Dua aspek yang sangat penting dalam konteks diagnosis penyakit. Oleh karena itu, model terbaik yang teridentifikasi tidak hanya memberikan akurasi teknis yang tinggi, tetapi juga memiliki relevansi kuat terhadap kebutuhan medis dan klinis.
+
 Dari perspektif konteks bisnis dan kesehatan, penerapan model dengan performa tinggi seperti AdaBoost berpotensi memberikan dampak signifikan, terutama dalam mendukung deteksi dini diabetes. Sistem prediktif yang akurat dapat membantu fasilitas layanan kesehatan untuk mengklasifikasikan pasien berisiko lebih cepat, mengoptimalkan alokasi sumber daya medis, dan merancang strategi pencegahan serta edukasi yang lebih tepat sasaran. Selain itu, model ini juga bisa diintegrasikan ke dalam sistem penunjang keputusan medis, memberikan rekomendasi kepada tenaga medis berdasarkan analisis data secara otomatis. Hal ini tentu berkontribusi pada peningkatan efisiensi operasional, pengurangan biaya pemeriksaan, dan peningkatan kualitas hidup pasien melalui penanganan yang lebih dini dan tepat.
+
 Dari hasil evaluasi dan penjelasan diatas, maka model AdaBoost akan digunkan pada proyek ini dalam memprediksi penyakit diabetes berdasarkan fitur Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin, DiabetesPedigreeFunction, dan Age.
 
 ## Kesimpulan 
-Dengan menerapkan berbagai metode dan evaluasi terhadap enam model machine learning, **AdaBoost terbukti menjadi model dengan performa terbaik** dalam memprediksi penyakit diabetes secara akurat. Model ini menunjukkan keseimbangan yang unggul antara kemampuan mendeteksi kasus positif dan ketepatan prediksi, menjadikannya pilihan yang paling andal. Berdasarkan hasil tersebut, tujuan utama proyek berhasil dicapai, yaitu mengembangkan sistem prediksi penyakit diabetes yang efektif, akurat, dan relevan untuk mendukung pengambilan keputusan di bidang kesehatan.
-
+Dengan menerapkan berbagai metode dan evaluasi terhadap enam model machine learning, AdaBoost terbukti menjadi model dengan performa terbaik dalam memprediksi penyakit diabetes secara akurat. Model ini menunjukkan keseimbangan yang unggul antara kemampuan mendeteksi kasus positif dan ketepatan prediksi, menjadikannya pilihan yang paling andal. Berdasarkan hasil tersebut, tujuan utama proyek berhasil dicapai, yaitu mengembangkan sistem prediksi penyakit diabetes yang  dapat memprediksi penyakit diabetes berdasarkan factor factor penyakit diabetes.
 
 ## Referensi
 1. Ahmadi, T., Wulandari, A., & Suhatman, H. (2019). Sistem Customer Churn Prediction Menggunakan Machine Learning pada Perusahaan ISP. Jetri: Jurnal Ilmiah Teknik Elektro, 17.
@@ -358,7 +379,7 @@ Dengan menerapkan berbagai metode dan evaluasi terhadap enam model machine learn
 4. Öngelen, G., & İnkaya, T. (2023). A novel LOF-based ensemble regression tree methodology. Neural Computing and Applications, 35(26), 19453–19463. https://doi.org/10.1007/s00521-023-08773-w
 5. Septiana Rizky, P., Haiban Hirzi, R., & Hidayaturrohman, U. (2022). Perbandingan Metode LightGBM dan XGBoost dalam Menangani Data dengan Kelas Tidak Seimbang. J Statistika: Jurnal Ilmiah Teori Dan Aplikasi Statistika, 15(2), 228–236. https://doi.org/10.36456/jstat.vol15.no2.a5548
 6. Silalahi, A. P., & Simanullang, H. G. (2023). SUPERVISED LEARNING METODE K-NEAREST NEIGHBOR UNTUK PREDIKSI DIABETES PADA WANITA. METHOMIKA Jurnal Manajemen Informatika Dan Komputerisasi Akuntansi, 7(1), 144–149. https://doi.org/10.46880/jmika.Vol7No1.pp144-149
- 
+
 
  
 
